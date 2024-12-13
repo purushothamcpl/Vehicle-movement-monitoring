@@ -1,0 +1,46 @@
+# Generate HTML page
+html_content = """
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vehicle Status</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .vehicle {
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+        .vehicle img {
+            max-width: 500px;
+            height: auto;
+        }
+        .vehicle-info {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Vehicle Status</h1>
+"""
+
+for number_plate, (image_file, status, slot) in latest_status.items():
+    html_content += f"""
+    <div class="vehicle">
+        <img src="{os.path.join(dataset_dir, image_file)}" alt="Vehicle Image">
+        <div class="vehicle-info">
+            <p>Number Plate: {number_plate}</p>
+            <p>Status: {status}</p>
+            <p>Slot Number: {slot}</p>
+        </div>
+    </div>
+    """
+
+html_content += """
+</body>
+</html>
+"""
+
+
